@@ -1,8 +1,12 @@
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
+import type { Dish } from '@/types'
+
 export default {
   props: {
     dish: {
-      type: Object,
+      type: Object as PropType<Dish>,
       required: true,
     },
   },
