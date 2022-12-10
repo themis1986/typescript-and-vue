@@ -1,17 +1,27 @@
-<script>
+<script setup lang="ts">
 import { v4 as uuidv4 } from 'uuid'
+import type { Restaurant } from '@/types'
+import { ref } from 'vue'
 
-export default {
-  emits: ['add-new-restaurant', 'cancel-new-restaurant'],
-  data: () => ({
-    newRestaurant: {
-      id: uuidv4(),
-      name: '',
-      address: '',
-      website: '',
-      status: 'Want to Try',
-    },
-  }),
+const emit = defineEmits<{
+  (e: 'add-new-restaurant', restaurant: Restaurant): void
+  (e: 'cancel-new-restaurant'): void
+}>()
+
+const newRestaurant = ref<Restaurant>({
+  id: uuidv4(),
+  name: '',
+  address: '',
+  website: '',
+  status: 'Want to Try',
+})
+
+const addRestaurant = () => {
+  emit('add-new-restaurant', newRestaurant.value)
+}
+
+const cancelNewRestaurant = () => {
+  emit('cancel-new-restaurant')
 }
 </script>
 
@@ -50,8 +60,9 @@ export default {
       </div>
       <div class="field">
         <div class="buttons">
-          <button @click="$emit('add-new-restaurant', newRestaurant)" class="button is-success">Create</button>
-          <button @click="$emit('cancel-new-restaurant')" class="button is-light">Cancel</button>
+          const addRestaurant = () => {
+          <button @click="addRestaurant" class="button is-success">Create</button>
+          <button @click="cancelNewRestaurant" class="button is-light">Cancel</button>
         </div>
       </div>
     </div>
