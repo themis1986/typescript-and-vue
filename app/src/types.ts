@@ -10,4 +10,5 @@ export type Dish = {
   id: string
   name: string
   status: string
+  diet: string
 }
