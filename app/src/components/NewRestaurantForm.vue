@@ -25,6 +25,13 @@ const addRestaurant = () => {
 const cancelNewRestaurant = () => {
   emit('cancel-new-restaurant')
 }
+
+const updateName = (event: InputEvent) => {
+  if (event.data === ' ') {
+    newRestaurant.value.name = (event.target as HTMLInputElement).value
+  }
+}
+
 onMounted(() => {
   elNameInput.value?.focus()
 })
@@ -38,6 +45,7 @@ onMounted(() => {
         <div class="control">
           <input
             :value="newRestaurant.name"
+            @input="updateName"
             type="text"
             class="input is-large"
             placeholder="Beignet and the Jets"
