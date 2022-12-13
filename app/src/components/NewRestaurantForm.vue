@@ -8,6 +8,8 @@ const emit = defineEmits<{
   (e: 'cancel-new-restaurant'): void
 }>()
 
+const elNameInput = ref<HTMLInputElement | null>()
+
 const newRestaurant = ref<Restaurant>({
   id: uuidv4(),
   name: '',
@@ -33,7 +35,6 @@ const cancelNewRestaurant = () => {
         <div class="control">
           <input
             :value="newRestaurant.name"
-            @keyup.space="updateName"
             type="text"
             class="input is-large"
             placeholder="Beignet and the Jets"
