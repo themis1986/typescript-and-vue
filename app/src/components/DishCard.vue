@@ -2,19 +2,17 @@
 import type { PropType } from 'vue'
 import { computed } from 'vue'
 import type { Dish } from '@/types'
+
 type PropTypes = {
   dish: Dish
 }
+
 const props = defineProps<PropTypes>()
 
-const emits = defineEmits<{ (e: 'delete-dish', dish: Dish): void }>()
-// props: {
-//   dish: {
-//     type: Object as PropType<Dish>,
-//     required: true,
-//   },
-// },
-// emits: ['delete-dish'],
+const emit = defineEmits<{
+  (e: 'delete-dish', value: Dish): void
+}>()
+
 const statusColor = computed(() => {
   switch (props.dish.status) {
     case 'Want to Try':
@@ -27,8 +25,9 @@ const statusColor = computed(() => {
       return ''
   }
 })
+
 const deleteDish = () => {
-  emits('delete-dish', props.dish)
+  emit('delete-dish', props.dish)
 }
 </script>
 
