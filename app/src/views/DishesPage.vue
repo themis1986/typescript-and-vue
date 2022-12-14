@@ -3,7 +3,6 @@ import { ref, computed, onMounted } from 'vue'
 import NewDishForm from '../components/NewDishForm.vue'
 import DishCard from '../components/DishCard.vue'
 import SideMenu from '../components/SideMenu.vue'
-import { defineComponent } from 'vue'
 import type { Dish } from '@/types'
 import { useRoute } from 'vue-router'
 
